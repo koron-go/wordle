@@ -27,12 +27,20 @@ func NewResult(s string) Result {
 	return r
 }
 
+func (r Result) toString() string {
+	runes := make([]rune, len(r))
+	for i, c := range r {
+		runes[i] = rune(c)
+	}
+	return string(runes)
+}
+
 func (r Result) String() string {
-	return string(r)
+	return r.toString()
 }
 
 func (r Result) GoString() string {
-	return string(r)
+	return r.toString()
 }
 
 func index(runes []rune, x rune) int {
