@@ -8,32 +8,32 @@ const (
 	CorrectSpot      = 'C'
 )
 
-type Result []Spot
+type Spots []Spot
 
-func NewResult(s string) Result {
-	r := Result(s)
-	for i, c := range r {
+func NewSpots(s string) Spots {
+	sp := Spots(s)
+	for i, c := range sp {
 		switch c {
 		case NoSpot, WrongSpot, CorrectSpot:
 		default:
-			r[i] = NoSpot
+			sp[i] = NoSpot
 		}
 	}
-	return r
+	return sp
 }
 
-func (r Result) toString() string {
-	runes := make([]rune, len(r))
-	for i, c := range r {
+func (sp Spots) toString() string {
+	runes := make([]rune, len(sp))
+	for i, c := range sp {
 		runes[i] = rune(c)
 	}
 	return string(runes)
 }
 
-func (r Result) String() string {
-	return r.toString()
+func (sp Spots) String() string {
+	return sp.toString()
 }
 
-func (r Result) GoString() string {
-	return r.toString()
+func (sp Spots) GoString() string {
+	return sp.toString()
 }

@@ -15,7 +15,7 @@ func TestMatch(t *testing.T) {
 		if err != nil {
 			t.Fatalf("wordle.Match failed: %s", err)
 		}
-		want := wordle.NewResult(c.r)
+		want := wordle.NewSpots(c.r)
 		if got.String() != want.String() {
 			t.Errorf("unexpected result: q=%s a=%s want=%s got=%s", c.q, c.a, want, got)
 		}

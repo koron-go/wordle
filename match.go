@@ -14,7 +14,7 @@ func index(runes []rune, x rune) int {
 	return -1
 }
 
-func Match(q, a string) (Result, error) {
+func Match(q, a string) (Spots, error) {
 	rq := []rune(q)
 	ra := []rune(a)
 	if len(rq) != len(ra) {
@@ -23,7 +23,7 @@ func Match(q, a string) (Result, error) {
 	if len(rq) == 0 {
 		return nil, errors.New("short word, must be longer than zero")
 	}
-	rr := make(Result, len(rq))
+	rr := make(Spots, len(rq))
 	for i, r := range rq {
 		if ra[i] == r {
 			rr[i] = CorrectSpot
