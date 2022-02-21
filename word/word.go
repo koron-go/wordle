@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"sort"
 	"strings"
 )
 
@@ -19,6 +20,8 @@ var other []byte
 var Answer []string
 
 var Other []string
+
+var All []string
 
 func load(b []byte) ([]string, error) {
 	words := make([]string, 0, len(b)/6)
@@ -47,7 +50,18 @@ func mustLoad(b []byte) []string {
 	return v
 }
 
+func merge(a, b []string) []string {
+	sum := make([]string, len(a)+len(b))
+	copy(sum, a)
+	copy(sum[len(a):], b)
+	sort.SliceStable(sum, func(i, j int) bool {
+		return sum[i] < sum[j]
+	})
+	return sum
+}
+
 func init() {
 	Answer = mustLoad(answer)
 	Other = mustLoad(other)
+	All = merge(Answer, Other)
 }

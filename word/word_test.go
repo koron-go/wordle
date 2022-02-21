@@ -46,3 +46,21 @@ func TestNotIntersect(t *testing.T) {
 		}
 	}
 }
+
+func TestAllSize(t *testing.T) {
+	got := len(word.All)
+	want := len(word.Other) + len(word.Answer)
+	if got != want {
+		t.Errorf("unexpected len(word.All) want=%d got=%d", want, got)
+	}
+}
+
+func TestAllNotDuplicate(t *testing.T) {
+	seen := make(map[string]struct{}, len(word.All))
+	for _, w := range word.All {
+		if _, has := seen[w]; has {
+			t.Errorf("word %q is duplicated", w)
+		}
+		seen[w] = struct{}{}
+	}
+}
