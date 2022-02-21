@@ -73,3 +73,13 @@ func wrongSpotFilter(r rune, x int, ignores []int) runeFilter {
 		return containsRune(rr, r)
 	})
 }
+
+func ApplyFilter(f Filter, src []string) []string {
+	dst := make([]string, 0, len(src) / 2)
+	for _, s := range src {
+		if f.Filter(s) {
+			dst = append(dst, s)
+		}
+	}
+	return dst
+}
